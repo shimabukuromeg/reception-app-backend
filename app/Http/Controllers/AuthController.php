@@ -44,6 +44,11 @@ class AuthController extends Controller
      */
     protected function publishToken($request) {
         $token = auth('api')->attempt(['email' => $request->email, 'password' => $request->password]);
+
+        if ($token === false) {
+            return response()->apiError('ログインに失敗しました', Response::HTTP_UNAUTHORIZED);
+        }
+
         return $this->respondWithToken($token);
     }
 
