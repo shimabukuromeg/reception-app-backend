@@ -4,18 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CheckIn extends Model
+class CheckInUsage extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'check_ins';
+    protected $table = 'check_in_usages';
 
     /**
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'check_in_id',
+        'check_in_category_id'
     ];
 
     /*
@@ -26,16 +27,16 @@ class CheckIn extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function checkIn()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(CheckIn::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function checkInUsages()
+    public function checkInCategory()
     {
-        return $this->hasMany(CheckInUsage::class);
+        return $this->belongsTo(CheckInCategory::class);
     }
 }
