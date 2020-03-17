@@ -27,4 +27,12 @@ class CheckInRequest extends FormRequest
             'checkin_category_ids' => 'array|nullable|exists:check_in_categories,id'
         ];
     }
+
+    /**
+     * @return bool
+     */
+    public function hasCheckInCategoryIds(): bool
+    {
+        return filled($this->input('checkin_category_ids'));
+    }
 }

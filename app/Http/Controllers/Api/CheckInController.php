@@ -12,22 +12,12 @@ use App\Http\Requests\CheckInRequest;
 class CheckInController extends Controller
 {
     /**
-     * @param Request $request
-     * @return string
+     * @param CheckInRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CheckInRequest $request)
     {
-        $user = \Auth::user();
-        $checkIn = CheckIn::create([
-            'user_id' => $user->id,
-        ]);
-
-        if (filled($request->input('checkin_category_ids'))){
-            foreach ($request->input('checkin_category_ids') as $CheckinCategoryId) {
-                $checkIn->checkInUsages()->create(['check_in_category_id' => $CheckinCategoryId]);
-            }
-        }
-
+        $checkIn = CheckIn::createWithCheckInUsage($request);
         return response()->json(new CheckInResource($checkIn));
     }
 }
