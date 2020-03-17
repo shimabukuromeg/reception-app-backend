@@ -27,3 +27,8 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
 });
+
+Route::group(['prefix' => 'v1', 'as' => 'api.v1.', 'namespace' => 'Api'], function() {
+    Route::resource('checkins', 'CheckInController', ['only' => ['store']]);
+    Route::resource('users', 'UserController', ['only' => ['show']]);
+});
