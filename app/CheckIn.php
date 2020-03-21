@@ -87,6 +87,6 @@ class CheckIn extends Model
      */
     public static function retrieve(CheckInRequest $request)
     {
-        return $request->hasUserId() ? CheckIn::userId($request->input('user_id'))->get() : CheckIn::all();
+        return $request->hasUserId() ? CheckIn::userId($request->input('user_id'))->orderBy('created_at', 'desc')->get() : CheckIn::orderBy('created_at', 'desc')->get();
     }
 }

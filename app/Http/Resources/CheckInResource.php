@@ -22,6 +22,7 @@ class CheckInResource extends JsonResource
                 'email' => $this->user->email,
             ],
             'checkin_category_ids' => $this->checkInUsages->pluck('check_in_category_id'),
+            'created_at' => $this->created_at,
         ];
     }
 }

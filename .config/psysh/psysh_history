@@ -1,0 +1,7 @@
+_HiStOrY_V2_
+App\134CheckIn::all()
+App\134CheckIn::userId()
+App\134CheckIn::userId(1)
+App\134CheckIn::userId(1)->get()
+App\134CheckIn::userId(2)->get()
+App\134CheckIn::userId()->get()
