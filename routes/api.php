@@ -29,6 +29,6 @@ Route::group([
 });
 
 Route::group(['prefix' => 'v1', 'as' => 'api.v1.', 'namespace' => 'Api'], function() {
-    Route::resource('checkins', 'CheckInController', ['only' => ['store']]);
+    Route::resource('checkins', 'CheckInController', ['only' => ['store', 'index']]);
     Route::resource('users', 'UserController', ['only' => ['show']]);
 });

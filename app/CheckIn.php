@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Requests\CheckInRequest;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class CheckIn extends Model
@@ -42,6 +43,22 @@ class CheckIn extends Model
 
     /*
     |------------------------------------------------------------------------------------
+    | Scopes
+    |------------------------------------------------------------------------------------
+    */
+
+    /**
+     * @param Builder $query
+     * @param int     $userId
+     * @return Builder
+     */
+    public function scopeUserId(Builder $query, int $userId): Builder
+    {
+        return $query->where('user_id', $userId);
+    }
+
+    /*
+    |------------------------------------------------------------------------------------
     | Method
     |------------------------------------------------------------------------------------
     */
@@ -62,5 +79,14 @@ class CheckIn extends Model
         }
 
         return $checkIn;
+    }
+
+    /**
+     * @param CheckInRequest $request
+     * @return CheckIn[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public static function retrieve(CheckInRequest $request)
+    {
+        return $request->hasUserId() ? CheckIn::userId($request->input('user_id'))->get() : CheckIn::all();
     }
 }

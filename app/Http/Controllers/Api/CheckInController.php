@@ -20,4 +20,14 @@ class CheckInController extends Controller
         $checkIn = CheckIn::createWithCheckInUsage($request);
         return response()->json(new CheckInResource($checkIn));
     }
+
+    /**
+     * @param CheckInRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(CheckInRequest $request)
+    {
+        $checkIns = CheckIn::retrieve($request);
+        return response()->json(CheckInResource::collection($checkIns));
+    }
 }

@@ -35,4 +35,12 @@ class CheckInRequest extends FormRequest
     {
         return filled($this->input('checkin_category_ids'));
     }
+
+    /**
+     * @return bool
+     */
+    public function hasUserId(): bool
+    {
+        return filled($this->input('user_id'));
+    }
 }
