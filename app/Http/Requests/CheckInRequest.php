@@ -24,7 +24,8 @@ class CheckInRequest extends FormRequest
     public function rules()
     {
         return [
-            'checkin_category_ids' => 'array|nullable|exists:check_in_categories,id'
+            'checkin_category_ids' => 'array|nullable|exists:check_in_categories,id',
+            'user_id' => 'nullable',
         ];
     }
 
