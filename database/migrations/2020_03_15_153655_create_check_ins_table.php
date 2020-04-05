@@ -19,6 +19,11 @@ class CreateCheckInsTable extends Migration
                 ->unsignedInteger('user_id')
                 ->comment('チェックインしたユーザーのID');
             $table->timestamps();
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
