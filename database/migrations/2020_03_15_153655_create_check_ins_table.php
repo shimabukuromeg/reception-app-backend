@@ -16,8 +16,7 @@ class CreateCheckInsTable extends Migration
         Schema::create('check_ins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table
-                ->bigInteger('user_id')
-                ->unsigned()
+                ->unsignedInteger('user_id')
                 ->comment('チェックインしたユーザーのID');
             $table->timestamps();
             $table
